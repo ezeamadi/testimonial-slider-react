@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
+import Characters from './components/characters'
+import CharacterCard from './components/CharacterCard'
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider"
+import Search from "./components/search"
 import './App.css'
-import Characters from './characters'
-import CharacterCard from './CharacterCard'
+
 
 class App extends Component {
   state = {
@@ -29,9 +32,20 @@ class App extends Component {
   }
 
   render () {
-    return <CharacterCard {...Characters[this.state.characterIndex]}
-    prevClick={this.handlePrevClick}
-    nextClick = {this.handleNextClick} />
+    return (
+    <div>
+      <CharacterCard {...Characters[this.state.characterIndex]}
+        prevClick={this.handlePrevClick}
+        nextClick = {this.handleNextClick} 
+      />
+
+      <MuiThemeProvider>
+        <div>
+          <Search />
+        </div>
+      </MuiThemeProvider>
+    </div>
+    )
   }
 }
 

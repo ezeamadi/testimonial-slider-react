@@ -1,6 +1,6 @@
-import Tanya from "./images/image-tanya.jpg";
-import John from "./images/image-john.jpg"
-import Image3 from "./images/image-3.jpg"
+import Tanya from "../images/image-tanya.jpg";
+import John from "../images/image-john.jpg"
+import Image3 from "../images/image-3.jpg"
 
 const characters = [
     {

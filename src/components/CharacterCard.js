@@ -1,7 +1,7 @@
 import React from 'react'
-import './App.css'
-import IconNext from './images/icon-next.svg'
-import IconPrevious from './images/icon-prev.svg'
+import '../App.css'
+import IconNext from '../images/icon-next.svg'
+import IconPrevious from '../images/icon-prev.svg'
 // import "./App.js"
 
 function CharacterCard ({ id, testimony, hobbies, name, position, image, nextClick, prevClick }) {
