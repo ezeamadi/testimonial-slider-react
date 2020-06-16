@@ -1,33 +1,38 @@
 import React, { Component } from "react";
 import "./App.css";
-import Tanya from "./images/image-tanya.jpg";
 import IconNext from "./images/icon-next.svg";
 import IconPrevious from "./images/icon-prev.svg";
+import Characters from "./characters"
 
 class App extends Component {
   render() {
     return (
-      <div>
+      Characters.map(character => (
+      <div key = {character.id}>
         <div className="container flex col">
           <div className="card flex row" id="card-tanya">
             <div className="card__info flex col">
               <p className="card__desc" id="desc-tanya">
-                “I’ve been interested in coding for a while but never taken the
-                jump, until now. I couldn’t recommend this course enough. I’m
-                now in the job of my dreams and so excited about the future.”
+               {character.testimony}
+              </p>
+               <p className="card__desc" id="desc-tanya"><strong><em>
+                  Hobbies: </em></strong>{character.hobbies}
               </p>
               <p className="card__details flex row">
                 <span className="card__details__name" id="name-tanya">
-                  Tanya Sinclair
+                  {character.name}
                 </span>
                 <span className="card__details__position" id="pos-tanya">
-                  UX Engineer
+                  {character.position}
                 </span>
+               
               </p>
+             
             </div>
+             
             <div className="card__imgs flex col">
               <div className="card__img">
-                <img src={Tanya} id="img-tanya" alt="People/Tanya" />
+                <img src={character.image} id="img-tanya" alt="people/tanya" />
               </div>
               <div className="card__btns flex">
                 <button
@@ -47,7 +52,8 @@ class App extends Component {
           </div>
         </div>
       </div>
-    );
+    )
+    ))
   }
 }
 
