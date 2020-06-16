@@ -1,5 +1,6 @@
 import Tanya from "./images/image-tanya.jpg";
 import John from "./images/image-john.jpg"
+import Image3 from "./images/image-3.jpg"
 
 const characters = [
     {
@@ -20,10 +21,10 @@ const characters = [
     },
     {
         id: 3,
-        name: "Ishi Ukwu",
+        name: "Ishi Ukwu 9jaSwag",
         testimony: "I like web developement. Years ago, I wanted to get into a program that will help me immensely to achieve my goals. I stumbled on this program and enrolled. In hindsight, that was the best decision that I ever made beacuse I am now a mid-level programmer and this bootcamp was my springboard",
         position: "Mid-level DevOps Engineer",
-        image: Tanya,
+        image: Image3,
         hobbies: "fashion, cooking, hanging out"
     }
 ];
