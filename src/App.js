@@ -3,21 +3,26 @@ import Characters from './components/characters'
 import CharacterCard from './components/CharacterCard'
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider"
 import Search from "./components/search"
+import {getHobbies} from './components/characters'
+
 import './App.css'
 
 
 class App extends Component {
   state = {
-    characterIndex: 0
+    characterIndex: 0,
+    currentCharacterHobbies: Characters[0].hobbies,
   }
 
   handlePrevClick = () => {
-    let {characterIndex} = this.state;
+    let { characterIndex } = this.state;
+
     if (characterIndex === 0){
       characterIndex = Characters.length
     }
-     this.setState({
-      characterIndex: characterIndex-1
+    this.setState({
+      characterIndex: characterIndex - 1,
+      currentCharacterHobbies: Characters[characterIndex - 1].hobbies,
     })
   }
 
@@ -27,7 +32,8 @@ class App extends Component {
       characterIndex = -1
     }
     this.setState({
-      characterIndex: characterIndex + 1
+      characterIndex: characterIndex + 1,
+      currentCharacterHobbies: Characters[characterIndex + 1].hobbies,
     })
   }
 
@@ -41,7 +47,7 @@ class App extends Component {
 
       <MuiThemeProvider>
         <div>
-          <Search />
+          <Search hobbies={this.state.currentCharacterHobbies} />
         </div>
       </MuiThemeProvider>
     </div>

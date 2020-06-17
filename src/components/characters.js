@@ -29,4 +29,10 @@ const characters = [
     }
 ];
 
+export function getHobbies(){
+    for (let i =0; i < characters.length; i++){
+        return characters[i]['hobbies'];
+    }
+}
+
 export default characters;

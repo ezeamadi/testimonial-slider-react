@@ -1,52 +1,59 @@
 import React, { Component } from 'react';
-import TextField from "material-ui/TextField";
 import axios from "axios";
 import ImageResults from "./imageResults"
 
 
 class Search extends Component {
-    state = {
-        searchText: "",
-        amount: 5,
-        apiUrl: "https://pixabay.com/api/",
-        apiKey: "9259184-33e11f59eb5abd709817fb3fe",
-        images: [],
-    }
+	constructor(props) {
+			super(props);
+			this.state = {
+					images: [],
+			}
+	};
 
-    onTextChange = (event) => {
-        const { name, value } = event.target;
-        this.setState({ [name]: value }, () => {
+	componentDidMount() {
+		this.searchHobbies();
+	}
 
-            if (value === "") {
-                this.setState({
-                    images: [],
-                })
-            } else {
-                axios.get(`${this.state.apiUrl}/?key=${this.state.apiKey}&q=${this.state.searchText}&image_type=photo&per_page=${this.state.amount}&safesearch=true`)
-                    .then(response => this.setState({ images: response.data.hits }))
-                    .catch(err => console.log(err))
-            }
-        })
-    };
+	componentDidUpdate(prevProps) {
+		if (prevProps.hobbies !== this.props.hobbies) {
+			this.searchHobbies();
+		}
+	}
+	
+	searchHobbies = async () => {
+		const { hobbies } = this.props;
 
-    render() {
-        console.log(this.state.images)
-        return (
-            <div>
-                <TextField
-                    name="searchText"
-                    value={this.state.searchText}
-                    onChange={this.onTextChange}
-                    fullWidth={false}
-                />
+		if(hobbies.length === 0) {
+			this.setState({ images: []});
 
-                <br />
+			return;
+		}
 
-                {this.state.images.length > 0 ? (<ImageResults images={this.state.images}/>) : null}
-                
-            </div>
-        )
-    }
+		const hobbyList = hobbies.split(', ');
+
+		const requests = hobbyList.map(hobby => {
+			return new Promise((resolve, reject) => resolve(this.searchRequest(hobby)));
+		})
+
+		const response = await Promise.all(requests);
+		const images = response.flatMap(res => res.slice(0, 5));
+		this.setState({ images })
+	}
+
+	searchRequest = (hobby) => {
+		return axios.get(`https://pixabay.com/api//?key=9259184-33e11f59eb5abd709817fb3fe&q=${hobby}&image_type=photo&per_page='5'&safesearch=true`)
+									.then(response => response.data.hits)
+									.catch(err => console.log(err))
+	}
+
+	render() {
+		return (
+			<div>
+				{this.state.images.length > 0 ? (<ImageResults images={this.state.images}/>) : null}
+			</div>
+		)
+	}
 }
 
 export default Search;

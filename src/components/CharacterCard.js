@@ -4,7 +4,8 @@ import IconNext from '../images/icon-next.svg'
 import IconPrevious from '../images/icon-prev.svg'
 // import "./App.js"
 
-function CharacterCard ({ id, testimony, hobbies, name, position, image, nextClick, prevClick }) {
+const CharacterCard = ({ id, testimony, hobbies, name, position, image, nextClick, prevClick }) => {
+  
   return (
     <div key={id}>
       <div className='container flex col'>
