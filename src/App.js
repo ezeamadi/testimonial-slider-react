@@ -3,7 +3,6 @@ import Characters from './components/characters'
 import CharacterCard from './components/CharacterCard'
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider"
 import Search from "./components/search"
-import {getHobbies} from './components/characters'
 
 import './App.css'
 
